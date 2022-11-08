@@ -2,10 +2,12 @@
 
 def shortName(name):
     primeiroEspaco = name.find(" ")
-    firstName = name[:primeiroEspaco]
+    if primeiroEspaco != -1:
+        firstName = name[:primeiroEspaco]
     ultimoEspaco = name.rfind(" ")
-    secondName = name[ultimoEspaco:]
-    return firstName + secondName
+    if ultimoEspaco != -1:
+        secondName = name[ultimoEspaco:]
+    print (firstName + secondName)
 
 name = input("Insira o seu nome completo: ")
 shortName(name)
