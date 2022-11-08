@@ -3,11 +3,17 @@
 def standardName(name):
     primeiroEspaco = name.find(" ")
     firstName = name[:primeiroEspaco]
+
     ultimoEspaco = name.rfind(" ")
     lastName = name[ultimoEspaco:]
-    middleName = name[" ":" "]
-    middleName1 = middleName[0] + "." 
-    return firstName + middleName + lastName
+
+    for i in range(primeiroEspaco, ultimoEspaco):
+        if name[i] == " ":
+            middleName = " " + name[i+1] + "."
+    completeName = firstName + middleName + lastName
+
+    return completeName
+
 
 name = input("Insira o seu nome completo: ")
-standardName(name)
+print (standardName(name))
