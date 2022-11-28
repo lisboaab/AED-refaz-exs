@@ -2,19 +2,21 @@
 
 import random
 
-tentativas = 0
+tentativas = 1
 numero = random.randint(1, 50)
 tentativaUsuario = int(input("Insira um número: "))
-for tentativaUsuario in range(10):
+while numero != tentativaUsuario and tentativas < 10:
     if tentativaUsuario > numero:
         print("Tente um numero menor")
-        tentativas += 1
     elif tentativaUsuario < numero:
         print("Tente um número maior!")
-        tentativas += 1
-    elif tentativas == 10:
+    tentativas += 1
+    tentativaUsuario = int(input("Insira um número: "))
+    if tentativas == 10:
         print("Você esgotou suas tentativas!")
         break
-    else:
-        print("Você acertou o palpite! Você conseguiu em {} tentativas" .format(tentativas))
-        break
+
+if numero == tentativaUsuario:
+    print("Você acertou o palpite! Você conseguiu em {} tentativas" .format(tentativas))
+else:
+    print("Você esgotou suas tentativas!")
