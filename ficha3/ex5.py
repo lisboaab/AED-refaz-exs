@@ -22,7 +22,5 @@ while resposta.upper() == "S":
 
     if numero == tentativaUsuario:
         print("Você acertou o palpite! Você conseguiu em {} tentativas" .format(tentativas))
-    else:
-        print("Você esgotou suas tentativas!")
 
     resposta = input("Deseja jogar novamente? S/N ")
