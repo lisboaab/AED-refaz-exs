@@ -2,10 +2,12 @@ import random
 
 def generateNumbers (min, max, qty):
     numeros = []
-    for num in range(qty):
+    i = 0
+    while i != qty:
         num = random.randint(min,max)
         if num not in numeros:
             numeros.append(num)
+            i += 1
     return numeros
 
 def euroMilhoes():
