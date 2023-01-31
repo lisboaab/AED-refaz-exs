@@ -2,15 +2,14 @@ import random
 
 def generateNumbers (min, max, qty):
     numeros = []
-    i = 0
-    while i != qty:
+    for num in range(qty):
         num = random.randint(min,max)
         if num not in numeros:
             numeros.append(num)
     return numeros
 
 def euroMilhoes():
-    resp = "S"
+    resp = ""
     while resp.upper() != "N":
         chaveEuromilhoes = generateNumbers(1,50,5)
         chaveEstrelas = generateNumbers(1,12,2)
