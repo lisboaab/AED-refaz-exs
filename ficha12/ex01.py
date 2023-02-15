@@ -18,7 +18,7 @@ def registro(num,selected):
 
     
     f = open(ficheiro, "a", encoding="utf-8")
-    linha = str(num.get()) + ";" + data + ";" + hora + ";" + selected.get() + "\n"
+    linha = str(num.get()) + ";" + data + ";" + hora + ";" + str(selected.get()) + "\n"
     f.write(linha) 
     f.close()
 
