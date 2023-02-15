@@ -1,0 +1,9 @@
+from datetime import datetime
+
+dataEhora= datetime.now()
+
+data= dataEhora.strftime("%d/%m/%Y")
+hora =dataEhora.strftime("%H:%M")
+
+print(data)
+print(hora)
