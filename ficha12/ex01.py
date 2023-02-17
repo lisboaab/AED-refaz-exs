@@ -1,11 +1,16 @@
 from tkinter import *
+from tkinter import ttk
 import os
 from datetime import datetime
+# status: funcao movimentos não le o entry nem o radiobutton
+# window de consulta n feita
 
 # ---------- FUNCOES --------------
 
 
-def registro(num,selected):
+def registro(num, selected, infoMovimentos):
+    """
+    Adiciona as entradas e saidas de um aluno"""
     ficheiro = ".\\ficha12\\files\\acessos.txt"
     pasta = ".\\ficha12\\files"
 
@@ -18,11 +23,24 @@ def registro(num,selected):
 
     
     f = open(ficheiro, "a", encoding="utf-8")
-    linha = str(num.get()) + ";" + data + ";" + hora + ";" + str(selected.get()) + "\n"
+    linha = num.get() + ";" + data + ";" + hora + ";" + selected.get() + "\n"
     f.write(linha) 
     f.close()
 
+    fi = open(ficheiro, "r", encoding="utf-8")
+    lista = fi.readlines()
+    fi.close()
+    infoMovimentos.delete("0.0", "end")
+    for linha in lista:
+        # sep = linha.split(";")
+        #numEstudante = sep[0]
+        #if numEstudante == num:"""
+        infoMovimentos.insert("end" , linha)
+        
+
 def movimentos():
+    """
+    Nova window do menu "movimentos" """
     mainWindow.withdraw()
     windowMovimentos = Tk()
     windowMovimentos.geometry("800x500")
@@ -49,10 +67,10 @@ def movimentos():
 
     # ---------- INTERFACE --------------
     global num
-    num = IntVar()
+    num = StringVar()
     lblNumEstudante = Label(windowMovimentos, text="Número do estudante: ", bg="lightblue")
     lblNumEstudante.place(x=30, y= 30)
-    entryNumEstudante = Entry(windowMovimentos, width=20, textvariable = num)
+    entryNumEstudante = Entry(windowMovimentos, width=20, textvariable=num)
     entryNumEstudante.place(x=170, y=33)
 
     frameMovimentos = LabelFrame(windowMovimentos, text=" Movimentos ", width= 200, height=150, bg="lightblue")
@@ -60,13 +78,12 @@ def movimentos():
 
     global selected
     selected = StringVar()
-    rdEntrada = Radiobutton(windowMovimentos, text="Entrada", value="Entrada", variable= selected, bg="lightblue")
+    rdEntrada = Radiobutton(windowMovimentos, text="Entrada", value="Entrada", variable=selected, bg="lightblue")
     rdEntrada.place(x=50, y=180)
-    rdSaida = Radiobutton(windowMovimentos, text="Saida", value="Saida", variable= selected, bg="lightblue")
+    rdSaida = Radiobutton(windowMovimentos, text="Saida", value="Saida", variable=selected, bg="lightblue")
     rdSaida.place(x=50, y=230)
-    selected.set("Entrada")
 
-    btnRegistro = Button(windowMovimentos, text="Registrar", command=lambda:registro(num,selected), width=20, height=5)
+    btnRegistro = Button(windowMovimentos, text="Registrar", width=20, height=5, command=(lambda:registro(num, selected, infoMovimentos)))
     btnRegistro.place(x=290, y=190)
 
     lblHistorico = Label(windowMovimentos, text="Histórico de movimentos", bg="lightblue")
@@ -83,6 +100,8 @@ def movimentos():
     
 
 def goBack(window):
+    """
+    Volta pra página anterior"""
     window.destroy()
     mainWindow.deiconify() #restaura a janela anterior
 

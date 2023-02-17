@@ -1,0 +1,8 @@
+from tkinter import *
+window = Tk()
+
+# botao com imagem
+imgPesquisa = PhotoImage(file = ".//testes anteriores//normal21-22//imagens//pesquisar.png")
+btnPesquisa = Button(window, width=35, height=35, image=imgPesquisa, relief=FLAT, command=None)
+btnPesquisa.place(x=300, y= 10)
+

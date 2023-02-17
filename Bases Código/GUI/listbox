@@ -1,0 +1,23 @@
+# PEGA VALORES DE UMA LISTBOX E MANDA PRA UM ARQUIVO TXT
+def guardaFav():
+    # Obter todos os valores da listbox
+    values = listBox.get(0, 'end')
+    
+    # Criar um arquivo de texto para escrita
+    with open(".//testes anteriores//normal21-22//ficheiros//favoritos.txt", 'w') as file:
+        # Gravar os valores da listbox no arquivo de texto
+        for value in values:
+            file.write(value + '\n')
+
+
+# PEGA DE UMA TREEVIEW E COLOCA NA LISTBOX ----------------------------------------------
+def adcFavorito():
+    pos = tree.selection()
+
+    # Iterar sobre os índices selecionados
+    for index in pos:
+        # Obter os valores do item selecionado na treeview
+        values = tree.item(index)['values'][0]
+        
+        # Adicionar os valores na listbox
+        listBox.insert('end', values)
