@@ -1,0 +1,12 @@
+radio buttons
+
+frameInscricao = LabelFrame(window, text="Tipo Inscrição: ", width=200, height=200)
+frameInscricao.place(x=20, y= 80)
+
+selected = StringVar()
+rdbtnDoc = Radiobutton(frameInscricao, text="Docente", value="Docente", variable=selected)
+rdbtnStud = Radiobutton(frameInscricao, text="Estudante", value="Estudante", variable=selected)
+rdbtnExt = Radiobutton(frameInscricao, text="Externo", value="Externo", variable=selected)
+rdbtnDoc.place(x=15, y=30)
+rdbtnStud.place(x=15, y=80)
+rdbtnExt.place(x=15, y=130)

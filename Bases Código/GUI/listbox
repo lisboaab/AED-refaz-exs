@@ -10,6 +10,7 @@ def guardaFav():
             file.write(value + '\n')
 
 
+
 # PEGA DE UMA TREEVIEW E COLOCA NA LISTBOX ----------------------------------------------
 def adcFavorito():
     pos = tree.selection()

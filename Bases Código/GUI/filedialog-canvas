@@ -1,0 +1,19 @@
+importar from tkinter import filedialog
+
+def mudaImagem():
+    """Altera imagem"""
+    global imagem1
+    filename = filedialog.askopenfilename(title="Selecione uma imagem", initialdir=".//imagens",
+                filetypes= (("png files", "*.png"),("all files", "*.*")))
+    imagem1 = PhotoImage(file = filename)
+    canvaImg.itemconfig(img1, image=imagem1)
+
+# Adiconar imagem
+canvaImg = Canvas(window, width=200, height=150, bd=2, relief=SUNKEN)
+canvaImg.place(x=350,y=340)
+
+img = PhotoImage(file = ".//testes anteriores//normal21-22//imagens//pesquisar.png")
+img1 = canvaImg.create_image(0,0, anchor=NW, image=img)
+
+btnImg = Button(window, width=15, text="Mudar Imagem", command=mudaImagem)
+btnImg.place(x=200, y=450)

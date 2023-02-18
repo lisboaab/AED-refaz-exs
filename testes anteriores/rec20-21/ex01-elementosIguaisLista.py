@@ -1,0 +1,14 @@
+def elementosIguais(lista1, lista2):
+    """Recebe duas listas e indica quantos elementos e quais elementos são iguais nessas listas"""
+    emComum = []
+    for i in lista1:
+        if i in lista2:
+            emComum.append(i)
+    qtyElementos = len(emComum)
+    print("Existem ", qtyElementos, " elementos em comum nas listas. Que são: ")
+    for i in emComum:
+        print(i, end=" ")
+
+l1 = [ 10, 12, 14, 16, 18, 20, 22, 24, 26, 28]
+l2 = [ 1, 3, 5, 7, 14, 18, 21, 7, 9 , 8]
+elementosIguais(l1,l2)

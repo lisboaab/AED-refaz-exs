@@ -1,7 +1,0 @@
-def mudaImagem():
-    """Altera imagem"""
-    global imagem1
-    filename = filedialog.askopenfilename(title="Selecione uma imagem", initialdir=".//imagens",
-                filetypes= (("png files", "*.png"),("all files", "*.*")))
-    imagem1 = PhotoImage(file = filename)
-    canvaImg.itemconfig(img1, image=imagem1)

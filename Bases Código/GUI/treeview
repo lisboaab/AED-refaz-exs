@@ -20,13 +20,15 @@ window.geometry(f'{appWidth}x{appHeight}+{int(x)}+{int(y)}')
 # BASE DA TREEVIEW -------------------------------------
 tree = ttk.Treeview(window, selectmode= "browse", columns = ("Col1", "Col2", "Col3"), show = "headings")
 tree.place(x= 00, y= 00)
-tree.column("coluna", width= 00 ; anchor = e) # c - centro; e -  direita; w - esquerda
+tree.column("coluna", width= 00 , anchor = E) # c - centro; e -  direita; w - esquerda
 tree.heading("Nome", text ="Nome")
+
 
 tree.insert("", "end", values = (campos[0], campos[1], [2]))
 
 
-
+# APAGAR TUDO DE UMA TREEVIEW
+tree.delete(*tree.get_children())
 
 
 # PEGA DE UMA TREEVIEW E COLOCA NA LISTBOX ----------------------------------------------
@@ -43,7 +45,64 @@ def adcFavorito():
         
         
 
+
+# CONTAR QUANTOS ITENS TEM NA TREEVIW
  
+conta = len(tree.get_children())
+entryNumProvas.delete(0, END)  # Limpa o valor atual do widget Entry
+entryNumProvas.insert(0, str(conta))
+
+lblNumProvas = Label (window, text="Número de provas: ")
+lblNumProvas.place(x=80, y=345)
+numProvas = IntVar()
+entryNumProvas = Entry(window, textvariable=numProvas)
+entryNumProvas.place(x=200, y=347)
+
+
+
+
+# PEGAR DE UMA LISTA E COLOCAR NA TREEVIEW
+file = ".//testes anteriores//normal21-22//ficheiros//trails.txt"
+f = open(file, "r", encoding="utf-8")
+lista= f.readlines()
+f.close()
+for linha in lista:
+    campos = linha.split(";")
+    tree.insert("", "end", values=(campos[0], campos[1], campos[2]))
+
+
+
+
+# ADICIONAR NA TREEVIEW COM ENTRY E RADIOBUTTONS
+def adicionar():
+    if name.get() == "":
+        messagebox.showwarning("Inscrição", "Insira um nome para a inscrição")
+    else:
+        nome = name.get()
+        perfil = selected.get()
+        info = [nome, perfil]
+        tree.insert("", "end", values=info)
+
+name = StringVar()
+lblNome = Label(window, text="Nome:")
+entryNome = Entry(window, width=15, textvariable=name)
+lblNome.place(x=20, y= 20)
+entryNome.place(x=78, y=22)
+
+selected = StringVar()
+rdbtnDoc = Radiobutton(frameInscricao, text="Docente", value="Docente", variable=selected)
+rdbtnStud = Radiobutton(frameInscricao, text="Estudante", value="Estudante", variable=selected)
+
+
+
+# PEGAR TODOS OS VALORES DE UMA TREEVIEW E ADD NUM ARQUIVO TXT
+def guardar():
+    with open("FILE", "a", encoding="utf-8") as f:
+        for i in tree.get_children():
+            valores = tree.item(i)["values"]
+            f.write(f"{valores[0]};{valores[1]}\n")
+
+
 
 
 window.mainloop()

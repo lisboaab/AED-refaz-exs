@@ -1,18 +1,6 @@
-import os
 import random
 
-lPaises = []
-
-
-
-
-def lerFicheiro():
-    filepaises = open(ficheiro, "r", encoding="utf-8")
-    for pais in filepaises:
-        lPaises.append(pais[:-1])
-    filepaises.close() 
-   
-
+lPaises = ["Brasil", "Portugal", "Bélgica", "Alemanha", "França", "Hungria"]
 
 def sortearPais():
     pos = random.randint(0, len(lPaises)-1)
@@ -34,27 +22,20 @@ def jogar(paisAdivinhar):
     tentativas = 0
     palpite = ""
     numCaracteres=1
-    while tentativas <3 and palpite.upper() != paisAdivinhar.upper():
+    while tentativas < 3 and palpite.upper() != paisAdivinhar.upper():
         imprimePais(paisAdivinhar, numCaracteres)
         palpite = input("\n\n\t\tQual o país? ")
         numCaracteres+=1
         tentativas+=1
     if palpite.upper() != paisAdivinhar.upper():
-        print("\n\n\t\tGamne Over! :( :( :(")
+        print("\n\n\t\tGame Over! :( :( :(")
     else:
         print("\n\n\t\tParabéns, acertou!!! :-)")
 
 
 #-----------------------------------------
-ficheiro = ".\\ficha10\\ficheiros\\paises.txt"
-pasta = "ficheiros"
-if not os.path.isfile(ficheiro):
-    print("O ficheiro de países não existe!")
-else:
-    print("\n\t\t\tJOGO ADIVINHA O PAÍS")
-    print()
-    lerFicheiro()
-    paisAdivinhar= sortearPais()
-    #print(paisAdivinhar)
-    jogar(paisAdivinhar)
+print("\n\t\t\tJOGO ADIVINHA O PAÍS")
+print()
+paisAdivinhar= sortearPais()
+jogar(paisAdivinhar)
     

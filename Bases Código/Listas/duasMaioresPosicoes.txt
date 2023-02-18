@@ -1,0 +1,24 @@
+lmask = []
+
+def topMask(lmask):
+    maior = 0
+    maior2 = 0
+    pos1 = 0
+    pos2 = 0
+    for numero in lmask:
+        if numero > maior:
+            maior2 = maior
+            maior = numero
+        elif numero > maior2:
+            maior2 = numero
+    
+    for i in range(len(lmask)):
+        if lmask[i] == maior:
+            pos1 = (i+1)
+        elif lmask[i] == maior2:
+            pos2 = (i+1)
+    print("Os postos que mais produziram máscaras foram {0} e {1}" .format(pos1, pos2))
+
+
+pra achar a maior posicao de um elemento na lista:
+pos = lista.index(elemento)
