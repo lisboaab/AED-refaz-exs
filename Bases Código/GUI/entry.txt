@@ -1,0 +1,44 @@
+# APAGAR DADO DA ENTRY
+nomeEntry.delete(0, END)  # Limpa o valor atual do widget Entry
+
+# ADICIONAR VALOR NA ENTRY
+nomeEntry.insert(0, variavelAadicionar) # Adicionar novo valor
+
+# RETORNA O FILME MAIS VISTO DE UM ARQUIVO
+def verMais():
+    conta = len(tree.get_children())
+    entryNfilme.delete(0, END)  # Limpa o valor atual do widget Entry
+    entryNfilme.insert(0, str(conta))
+
+    ficheiro = ".//testes anteriores//teste2-20-21//ficheiros//filmes.txt"
+    f = open(ficheiro, "r", encoding="utf-8")
+    lista = f.readlines()
+    f.close()
+
+    cat =""
+    pos = listBoxCategorias.curselection()
+    if pos == (0,):
+        cat = "Drama"
+    elif pos == (1,):
+        cat = "Comédia"
+    elif pos == (2,):
+        cat = "Thriller"
+    elif pos == (3,):
+        cat = "Animação"
+    elif pos == (4,):
+        cat = "Ação"
+    elif pos == (5,):
+        cat = "Terror"
+    
+    filmeMaisVisto = None
+    maiorVisu = 0
+    for linha in lista:
+        div = linha.strip().split(";")
+        if div[0] == cat:
+            visu = int(div[2])
+            if visu > maiorVisu:
+                filmeMaisVisto = div[1]
+                maiorVisu = visu
+    
+    entryFilmeMaisVisto.delete("0", END)
+    entryFilmeMaisVisto.insert("0", filmeMaisVisto)

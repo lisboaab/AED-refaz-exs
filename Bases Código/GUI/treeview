@@ -20,10 +20,10 @@ window.geometry(f'{appWidth}x{appHeight}+{int(x)}+{int(y)}')
 # BASE DA TREEVIEW -------------------------------------
 tree = ttk.Treeview(window, selectmode= "browse", columns = ("Col1", "Col2", "Col3"), show = "headings")
 tree.place(x= 00, y= 00)
-tree.column("coluna", width= 00 , anchor = E) # c - centro; e -  direita; w - esquerda
+tree.column("coluna", width= 00 , anchor = W) # c - centro; e -  direita; w - esquerda
 tree.heading("Nome", text ="Nome")
 
-
+# ADD NA TREEVIEW
 tree.insert("", "end", values = (campos[0], campos[1], [2]))
 
 
@@ -61,7 +61,7 @@ entryNumProvas.place(x=200, y=347)
 
 
 
-# PEGAR DE UMA LISTA E COLOCAR NA TREEVIEW
+# PEGAR DE UMA LISTA/ARQUIVO TXT E COLOCAR NA TREEVIEW
 file = ".//testes anteriores//normal21-22//ficheiros//trails.txt"
 f = open(file, "r", encoding="utf-8")
 lista= f.readlines()
@@ -103,6 +103,140 @@ def guardar():
             f.write(f"{valores[0]};{valores[1]}\n")
 
 
+# LINHA EM FOCUS
+pos = tree.selection()
+
+
+# PEGA O MENOR VALOR DE UMA COLUNA ESPECIFICA DA TREEVIEW
+def infoTreeview():
+    """Mostra quantas atvs estão sendo mostradas na treeview e qual o melhor tempo delas"""
+    #conta
+    conta = len(tree.get_children())
+    entryNumProvas.delete(0, END)  # Limpa o valor atual do widget Entry
+    entryNumProvas.insert(0, str(conta)) #Adiciona valor novo
+    #tempo
+    mTempo = float('inf')
+    for i in tree.get_children():
+        tempo = float(tree.item(i)["values"][2])
+        if tempo < mTempo:
+            mTempo = tempo
+    entryMelhorTempo.delete(0, END)
+    entryMelhorTempo.insert(0, str(mTempo))
+
+
+
+#PEGAR DE UMA LISTBOX E COLOCAR NA TREEVIEW
+def passTreeview():
+    pos = lboxAtv.curselection()
+    file = ".//testes anteriores//normal20-21//ficheiros//tempos.txt"
+    f = open(file, "r", encoding="utf-8")
+    lista = f.readlines()
+    f.close()
+    pos= str(pos[0])
+    tree.delete(*tree.get_children())
+    for linha in lista:
+        div = linha.strip().split(";")
+        if div[0] == pos:
+            tree.insert("", "end", values=(div[1], div[2], div[3]))
+
+        #OU--------------------------------
+
+def seeInTreeview():
+    cat =""
+    pos = listBoxCategorias.curselection()
+    if pos == (0,):
+        cat = "Drama"
+    elif pos == (1,):
+        cat = "Comédia"
+    elif pos == (2,):
+        cat = "Thriller"
+    elif pos == (3,):
+        cat = "Animação"
+    elif pos == (4,):
+        cat = "Ação"
+    elif pos == (5,):
+        cat = "Terror"
+
+    file = ".//testes anteriores//teste2-20-21//ficheiros//filmes.txt"
+    f = open(file, "r", encoding="utf-8")
+    lista = f.readlines()
+    f.close()
+    tree.delete(*tree.get_children())
+    
+    for linha in lista:
+        div = linha.strip().split(";")    
+        if div[0] == cat:
+            tree.insert("", "end", values=(div[1], div[2]))
+
+        #OU---------------------------------
+
+"""def seeInTreeview():
+    # Define a list of category names
+    categories = ["Drama", "Comédia", "Thriller", "Animação", "Ação", "Terror"]
+
+    # Get the index of the selected item in listBoxCategorias
+    pos = listBoxCategorias.curselection()[0]
+
+    # Look up the category name using the index
+    cat = categories[pos]
+
+    # Read the contents of the text file into a list
+    with open('.//testes anteriores//teste2-20-21//ficheiros//filmes.txt', 'r', encoding="utf-8") as file:
+        lines = file.readlines()
+
+    # Iterate over each line in the list
+    for line in lines:
+        # Split the line into fields using the ';' delimiter
+        fields = line.strip().split(';')
+
+        # Extract the category name from the line (assumed to be the first field)
+        category_name = fields[0]
+
+        # Compare the category name with the selected category
+        if category_name == cat:
+            # Extract other fields from the line and insert them into the treeview
+            title = fields[1]
+            year = fields[2]
+            tree.insert("", "end", values=(title, year))"""
+
+# RETORNA O FILME MAIS VISTO DE UM ARQUIVO
+def verMais():
+    conta = len(tree.get_children())
+    entryNfilme.delete(0, END)  # Limpa o valor atual do widget Entry
+    entryNfilme.insert(0, str(conta))
+
+    ficheiro = ".//testes anteriores//teste2-20-21//ficheiros//filmes.txt"
+    f = open(ficheiro, "r", encoding="utf-8")
+    lista = f.readlines()
+    f.close()
+
+    cat =""
+    pos = listBoxCategorias.curselection()
+    if pos == (0,):
+        cat = "Drama"
+    elif pos == (1,):
+        cat = "Comédia"
+    elif pos == (2,):
+        cat = "Thriller"
+    elif pos == (3,):
+        cat = "Animação"
+    elif pos == (4,):
+        cat = "Ação"
+    elif pos == (5,):
+        cat = "Terror"
+    
+    filmeMaisVisto = None
+    maiorVisu = 0
+    for linha in lista:
+        div = linha.strip().split(";")
+        if div[0] == cat:
+            visu = int(div[2])
+            if visu > maiorVisu:
+                filmeMaisVisto = div[1]
+                maiorVisu = visu
+    
+    entryFilmeMaisVisto.delete("0", END)
+    entryFilmeMaisVisto.insert("0", filmeMaisVisto)
 
 
 window.mainloop()

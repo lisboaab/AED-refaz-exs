@@ -2,7 +2,7 @@ def inserirPaises():
     pais = input("País: ")
     continente = input("Continente: ")
     
-    file = open("ficha9/paises.txt", "r", encoding="utf-8")
+    file = open("ficha09/paises.txt", "r", encoding="utf-8")
     lista = file.readlines()
     file.close()
     
@@ -15,14 +15,14 @@ def inserirPaises():
     if pais_ja_existe:
         print("\n \t País já existe na lista")
     else:
-        file = open("ficha9/paises.txt", "a", encoding="utf-8")
+        file = open("ficha09/paises.txt", "a", encoding="utf-8")
         file.write("\n" + pais + ";" + continente + ";")
         file.close()
         print("\n \t País adicionado na lista")
 
 
 def printPaises():
-    file = open("ficha9/paises.txt", "r", encoding="utf-8")
+    file = open("ficha09/paises.txt", "r", encoding="utf-8")
     lista = file.readlines()
     file.close()
     print("País         Continente  \n------------------------------")
@@ -34,7 +34,7 @@ def printPaises():
         print()
 
 def consultaContinente(continente):
-    file = open("ficha9/paises.txt", "r", encoding="utf-8")
+    file = open("ficha09/paises.txt", "r", encoding="utf-8")
     lista = file.readlines()
     file.close()    
     
@@ -53,7 +53,7 @@ def consultaContinente(continente):
 
 
 def contarPaises():
-    file = open("ficha9/paises.txt", "r", encoding="utf-8")
+    file = open("ficha09/paises.txt", "r", encoding="utf-8")
     lista = file.readlines()
     file.close()    
     

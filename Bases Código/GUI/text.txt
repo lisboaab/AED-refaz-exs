@@ -1,0 +1,15 @@
+txtBox = Text(frameInfo, width=55, height=9)
+txtBox.place(x=20,y=230)
+
+
+**Para deletar info dentro de uma widget de texto:** `nomeWidget.delete("0.0", "end")`
+
+**Para adicionar info dentro de uma widget de texto:** `nomeWidget.insert("0.0", variavelTxtParaAdd)` → “0,0” é o lugar onde vai inserir a info, pode ser:
+“1.0” - linha 1, character 0
+“end” – final da Text
+“end-1c” – final da Text
+sem \n no final da Text
+
+ou user `set` - `linha = “cdfwefw”    nomeWidget.get(”end”, linha)` 
+
+**Para pegar a info dentro de uma widget de texto:** `novaVar = nomeWidget.get("0.0", "end")`

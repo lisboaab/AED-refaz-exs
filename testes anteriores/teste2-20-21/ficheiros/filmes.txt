@@ -1,0 +1,15 @@
+Drama;A cinco passos de você;24;
+Comédia;Ted;12;
+Thriller;Não olhe;20;
+Animação;Toy Story;55;
+Animação;Moana;25;
+Ação;Vingadores;125;
+Terror;Chuck;2;
+Comédia;O segurança do Shopping;20;
+Ação;007;15;
+Drama;Harriet;30;
+Drama;gerghh;33;
+Animação;Megamente;4;
+Drama;Um amor pra recordar;12;
+Thriller;Pássaros;30;
+Terror;Anabele;4;

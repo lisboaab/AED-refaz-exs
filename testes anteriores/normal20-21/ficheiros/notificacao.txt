@@ -1,0 +1,6 @@
+5K;Corrida X, 25 Janeiro 2020
+5K;Corrida Y, 25 Janeiro 2020
+10K;Corrida Z, 25 Janeiro 2020
+10K;Corrida X, 25 Janeiro 2020
+21K;Corrida P, 25 Janeiro 2020
+21K;Corrida T, 25 Janeiro 2020

@@ -22,3 +22,24 @@ def adcFavorito():
         
         # Adicionar os valores na listbox
         listBox.insert('end', values)
+
+
+
+# PEGA VALORES DE UM ARQUIVO TXT E MANDA PRA LISTBOX
+ficheiro = ".//testes anteriores//normal21-22//ficheiros//favoritos.txt"
+f = open(ficheiro, "r")
+lista = f.readlines()
+f.close()
+
+lboxFav = Listbox(window, width=40, height=20)
+lboxFav.place(x=720,y=100)
+for i in lista:
+    div = i.split(";")
+    lboxFav.insert(END, div[0])     
+    
+    #for i in lista:
+    #lboxAtv.insert(END, i)
+
+
+# LINHA EM FOCUS
+pos = lboxFav.curselection()

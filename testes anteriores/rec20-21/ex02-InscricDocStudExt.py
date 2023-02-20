@@ -76,7 +76,7 @@ def adicionar():
 
 def guardar():
     ficheiro = ".//testes anteriores//rec20-21//ficheiros//inscricoes.txt"
-    f = open(ficheiro, "a", encoding="utf-8")
+    f = open(ficheiro, "w", encoding="utf-8")
     for i in tree.get_children():
         valores = tree.item(i)["values"]
         f.write(f"{valores[0]};{valores[1]};\n")

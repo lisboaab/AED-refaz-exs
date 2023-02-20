@@ -162,7 +162,7 @@ lblFav = Label(window, text="Favoritos", font=("Helvetica", 11))
 lblFav.place(x=780, y=30)
 
 ficheiro = ".//testes anteriores//normal21-22//ficheiros//favoritos.txt"
-f = open(ficheiro, "r", encoding="utf-8")
+f = open(ficheiro, "r")
 lista = f.readlines()
 f.close()
 
