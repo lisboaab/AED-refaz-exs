@@ -42,3 +42,12 @@ def verMais():
     
     entryFilmeMaisVisto.delete("0", END)
     entryFilmeMaisVisto.insert("0", filmeMaisVisto)
+
+
+
+# PEGAR DADOS DA LINHA SELECIONADA NA TREEVIW E COLOCAR NA ENTRY
+row_id = tree.focus()  # pega o id da linha ativa 
+linha = tree.item(row_id)
+entry.set(linha["values"][0])
+entry2.set(linha["values"][1])
+entry3.set(linha["values"][2])
