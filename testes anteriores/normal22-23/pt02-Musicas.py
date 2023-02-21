@@ -72,6 +72,7 @@ def addMusica():
     f.close()
 
 def verMais():
+    entryNormal()
     conta = len(tree.get_children())
     entryNmsc.delete(0, END)  # Limpa o valor atual do widget Entry
     entryNmsc.insert(0, str(conta))
@@ -105,6 +106,8 @@ def verMais():
     entryMusicaMaisVista.insert("0", mscMaisVista)
     entryLinkYtb.delete("0", END)
     entryLinkYtb.insert("0", linkYtb)
+    entryReadOnly()
+    
 
 def mudaImagem():
     """Altera imagem"""
@@ -121,6 +124,15 @@ def lerBandas():
     for i in lista:
         listBoxBandas.insert(END, i)
 
+def entryReadOnly():
+    entryNmsc.configure(state="readonly")
+    entryMusicaMaisVista.configure(state="readonly")
+    entryLinkYtb.configure(state="readonly")
+
+def entryNormal():
+    entryNmsc.configure(state="normal")
+    entryMusicaMaisVista.configure(state="normal")
+    entryLinkYtb.configure(state="normal")
 
 #---------------GUI------------------
 
@@ -157,6 +169,7 @@ lblVisu.place(x=10, y=90)
 entryVisu = Entry(frameAddMsc, width=15, textvariable=addVisu)
 entryVisu.place(x=10, y=120)
 
+
 imgPlus = PhotoImage(file = ".//testes anteriores//normal22-23//plus.png")
 btnAddMsc = Button(frameAddMsc, text="Adicionar\nmúsica", image=imgPlus, width=80, height=80, compound="top", command=addMusica)
 btnAddMsc.place(x=5, y= 150)
@@ -188,6 +201,7 @@ lblLinkYtb = Label(frameMscs, text="Link youtube: ")
 lblLinkYtb.place(x=180, y=80)
 entryLinkYtb= Entry(frameMscs, width=15, textvariable=linkYtb)
 entryLinkYtb.place(x=270,y=80)
+
 
 # canvas
 canvaImg = Canvas(window, width=200, height=150, bd=2, relief=SUNKEN)

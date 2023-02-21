@@ -1,0 +1,7 @@
+menuBar = Menu(mainWindow)   #CRIA O MENU
+
+menuBar.add_command(label = "Movimentos", command = movimentos)  # ADICIONA CADA BOTAO/COMANDO AO MENU
+menuBar.add_command(label = "Consulta", command = None)
+menuBar.add_command(label = "Sair", command = mainWindow.quit)
+
+mainWindow.configure(menu = menuBar, background="lightblue") # ADICIONA O MENU A PÁGINA(WINDOW)

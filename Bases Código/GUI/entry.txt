@@ -51,3 +51,15 @@ linha = tree.item(row_id)
 entry.set(linha["values"][0])
 entry2.set(linha["values"][1])
 entry3.set(linha["values"][2])
+
+
+# DEIXAR A ENTRY SEM PODER SER ALTERADA
+            #no inicio da funcao
+def entryReadOnly():
+    nomeEntry.configure(state="readonly")
+
+    # acontece o código
+
+            #antes da funcao finalizar
+def entryNormal():
+    nomeEntry.configure(state="normal")

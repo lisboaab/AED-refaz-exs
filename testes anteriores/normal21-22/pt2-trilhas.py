@@ -104,9 +104,10 @@ def guardaFav():
 #Checkbuttons
 checkCurto = IntVar()
 checkUltra = IntVar()
+checkCurto.set(1)
+checkUltra.set(0)
 check01 = Checkbutton(window, text="Trail Curto", variable = checkCurto)
 check02 = Checkbutton(window, text="Ultra Trail", variable = checkUltra)
-checkCurto.set(1)
 check01.place(x=60, y=20)
 check02.place(x=170, y=20)
 
