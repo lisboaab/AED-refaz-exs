@@ -1,0 +1,48 @@
+def verMais():
+    conta = len(tree.get_children())
+    entryNmsc.delete(0, END)  # Limpa o valor atual do widget Entry
+    entryNmsc.insert(0, str(conta))
+
+    f = open(fMusicas, "r", encoding="utf-8")
+    lista = f.readlines()
+    f.close()
+
+    band = ""
+    pos = listBoxBandas.curselection()
+    if pos == (0,):
+        band = "Harry Styles"
+    elif pos == (1,):
+        band = "Coldplay"
+    elif pos == (2,):
+        band = "Maverick City"
+
+        
+
+
+## aqui:
+    mscMaisVista = None
+    maiorVisuN = 0  # Nova variável para armazenar o valor de visualizações convertido em inteiro
+    for linha in lista:
+        div = linha.strip().split(";")
+        if div[0] == band:
+            visu = div[2]
+            if visu.endswith("M"):
+                visuN = int(float(visu[:-1]) * 1000000)
+            elif visu.endswith("m"):
+                visuN = int(float(visu[:-1]) * 1000)
+            else:
+                visuN = int(visu)
+            
+            if visuN > maiorVisuN:
+                mscMaisVista = div[1]
+                linkYtb = div[3]
+                maiorVisuN = visuN
+
+
+
+
+    
+    entryMusicaMaisVista.delete("0", END)
+    entryMusicaMaisVista.insert("0", mscMaisVista)
+    entryLinkYtb.delete("0", END)
+    entryLinkYtb.insert("0", linkYtb)

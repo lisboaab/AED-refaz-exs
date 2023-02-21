@@ -245,6 +245,20 @@ entry.set(linha["values"][0])
 entry2.set(linha["values"][1])
 entry3.set(linha["values"][2])
 
-
+# MENOR TEMPO
+def menorTempoTreeview():
+    """Mostra qual o melhor/menor tempo das atividades mostradas na treeview"""
+    #conta
+    conta = len(tree.get_children())
+    entryNumProvas.delete(0, END)  # Limpa o valor atual do widget Entry
+    entryNumProvas.insert(0, str(conta)) #Adiciona valor novo
+    #tempo
+    mTempo = float('inf')
+    for i in tree.get_children():
+        tempo = float(tree.item(i)["values"][2])
+        if tempo < mTempo:
+            mTempo = tempo
+    entryMelhorTempo.delete(0, END)
+    entryMelhorTempo.insert(0, str(mTempo))
 
 window.mainloop()

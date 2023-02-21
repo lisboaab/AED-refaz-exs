@@ -6,3 +6,10 @@ imgPesquisa = PhotoImage(file = ".//testes anteriores//normal21-22//imagens//pes
 btnPesquisa = Button(window, width=35, height=35, image=imgPesquisa, relief=FLAT, command=None)
 btnPesquisa.place(x=300, y= 10)
 
+
+# botao com imagem + texto:
+imgPlus = PhotoImage(file = ".//testes anteriores//normal22-23//plus.png")
+btnAddMsc = Button(frameAddMsc, text="Adicionar\nmúsica", image=imgPlus, width=80, height=80, compound="top", command=addMusica)
+btnAddMsc.place(x=5, y= 150)
+                # "compound" é onde a imagem vai ficar em relação ao texto
+                # pode ser: top, bottom, left, right, etc.

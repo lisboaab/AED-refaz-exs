@@ -1,0 +1,5 @@
+compras = ['arroz', 'feijão', 'arroz', 'óleo de soja', 'macarrão', 'detergente']
+
+
+compras.remove('arroz')
+print(compras)
