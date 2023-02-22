@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter import filedialog
+import os
 
 window = Tk()
 window.geometry("1000x500") #(width x height) em px
@@ -42,24 +43,42 @@ def onChecked(checkCurto, checkUltra):
         tree.delete(*tree.get_children())
     elif checkUltra.get() == 1 and checkCurto.get() == 1:
         tree.delete(*tree.get_children())
+        
+        fileComplete = ".//testes anteriores//normal21-22//ficheiros//all.txt"
+        os.remove(fileComplete)
+
+        if not os.path.exists(fileComplete):
+            f = open(fileComplete, "x")
+            f.close()
+
         file1 = ".//testes anteriores//normal21-22//ficheiros//trails.txt"
         f1 = open(file1, "r", encoding="utf-8")
         lista1= f1.readlines()
         f1.close()
         for linha in lista1:
-            campos = linha.split(";")
-            tree.insert("", "end", values=(campos[0], campos[1], campos[2]))
+            f = open(fileComplete, "a", encoding="utf-8")
+            f.write(linha)
         
         file2 = ".//testes anteriores//normal21-22//ficheiros//ultratrails.txt"
         f2 = open(file2, "r", encoding="utf-8")
         lista2= f2.readlines()
         f2.close()
         for linha in lista2:
+            f = open(fileComplete, "a", encoding="utf-8")
+            f.write(linha)
+            
+        
+        file = open(fileComplete, "r", encoding="utf-8")
+        linhas = file.readlines()
+        file.close()
+        for linha in linhas:
             campos = linha.split(";")
             tree.insert("", "end", values=(campos[0], campos[1], campos[2]))
+
     conta = len(tree.get_children())
     entryNumProvas.delete(0, END)  # Limpa o valor atual do widget Entry
     entryNumProvas.insert(0, str(conta))  # Insere o novo valor no widget Entry
+    
 
 
 def sort_column(tree, col, reverse):
