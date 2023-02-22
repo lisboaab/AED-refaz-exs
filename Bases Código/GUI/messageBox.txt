@@ -1,1 +1,13 @@
 importar: from tkinter import messagebox
+
+messagebox.showinfo(title="Sua resposta está: ", message="CORRETA!!")
+
+               pode ser: showwarning, showerror, askquestion, askokcancel, askyesno,
+askretryignore
+
+
+res = messagebox.askquestion ("Pedido de confirmação", "confirma?") 
+if res == "yes":
+    messagebox.showinfo("info", "a resposta foi Sim")
+elif res == "no":
+messagebox.showinfo("info", "a resposta foi Nao")

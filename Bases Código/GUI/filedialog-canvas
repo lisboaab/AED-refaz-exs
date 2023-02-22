@@ -23,3 +23,80 @@ btnImg.place(x=200, y=450)
 # PEGA A PATH DA IMAGEM SELECIONADA
 filename = filedialog.askopenfilename(title="Selecione uma imagem", initialdir=".//imagens",
                 filetypes= (("png files", "*.png"),("all files", "*.*")))
+
+
+# IMAGEM DE PERFIL QUE PODE SER ALTERADA
+fileAvatar = ".//ficha13//ficheiros//perfil.txt"
+fileProvas = ".//ficha13//ficheiros//provas.txt"
+fileUtilizadores = ".//ficha13//ficheiros//utilizadores.txt"
+
+def mudaImagem():
+    """Altera imagem avatar"""
+    global imgCreate
+    global imagem1
+    global filename
+    filename = filedialog.askopenfilename(title="Selecione uma imagem", initialdir=".//imagens",
+                filetypes= (("png files", "*.png"),("all files", "*.*")))
+    imagem1 = PhotoImage(file = filename)
+    canvaImg.itemconfig(imgCreate, image=imagem1)
+
+    
+
+def guardarConfiguracoes():
+    """Pega path da imagem selecionada e o botao que clicou e salva num arquivo separado pro canvas pegar a info de lá"""
+    global selected 
+    global filename
+    continente = selected.get()
+
+    
+    if not os.path.exists(fileAvatar):
+        f = open(fileAvatar, "x")
+        f.close()
+    else: 
+        f = open(fileAvatar, "w", encoding="utf-8")
+        f.write(filename + ";" + continente)
+        f.close()
+
+def configuracoes():
+        """Painel onde vai aparecer as coisas pra mudar a info"""
+    painelConfig = PanedWindow(window, width = 850, height = 300, relief = "sunken")
+    painelConfig.place(x=0, y=150) 
+
+    global imgCreate
+    imgVar = attAvatar()
+    imgLogin = PhotoImage(file= imgVar)
+    canvaImg = Canvas(painelConfig, width=100, height=100)
+    canvaImg.place(x=100,y=20)
+    imgCreate = canvaImg.create_image(10, 10, image=imgLogin, anchor=NW)
+    
+
+    btnImg = Button(painelConfig, width=15,height=4, text="Selecione imagem \n de perfil", command=mudaImagem)
+    btnImg.place(x=50, y=20)
+
+    global selected
+    selected= StringVar()
+    frameCont = LabelFrame(painelConfig, text="Selecione um continente para jogar: ", width=500, height=150)
+    frameCont.place(x=20, y=150)
+    rdbEuropa = Radiobutton(frameCont, value="Europa",text="Europa", variable=selected)
+    rdbAmerica = Radiobutton(frameCont, value="America",text="America",  variable=selected)
+    rdbAsia = Radiobutton(frameCont, value="Asia", text="Asia", variable=selected)
+    rdbEuropa.place(x=10, y= 20)
+    rdbAmerica.place(x=10, y=40)
+    rdbAsia.place(x=10, y=60)
+
+    btnGuardar = Button(painelConfig, text="Guardar configuracoes", width=20, height=2, command=guardarConfiguracoes)
+    btnGuardar.place(x=570, y=200)
+
+
+
+
+def attAvatar():
+    """
+    Lê arquivo txt e coloca a imagem do avatar na main window"""
+    f = open(fileAvatar, "r", encoding="utf-8")
+    linha = f.readline()
+    f.close()
+    div = linha.split(";")
+    imagemAvatar = div[0]
+    img = str(imagemAvatar)
+    return img

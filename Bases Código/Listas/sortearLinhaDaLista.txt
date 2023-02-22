@@ -1,0 +1,4 @@
+import random
+
+indice_aleatorio = random.randint(0, len(lista)-1)
+cidade =  lista[indice_aleatorio]

@@ -1,0 +1,9 @@
+pasta = "files"
+ficheiro = "files\perfil.txt"
+
+if not os.path.exists(pasta):
+    os.chdir(pasta)
+
+if not os.path.exists(ficheiro):
+            f = open(ficheiro, "x")
+            f.close()
